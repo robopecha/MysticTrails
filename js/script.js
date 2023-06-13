@@ -152,10 +152,30 @@ function animate() {
   boundaries.forEach(boundary => {
     boundary.draw();
   })
-  fish.draw();
-  carrot.draw();
-  pinecone.draw();
-  pumpkin.draw();
+  if ((fish.position.x >= -3178 && fish.position.x <= -3166) && (fish.position.y >= -2055 && fish.position.y <= -2010) ) {
+    fish.taken = true;
+    // make fish appear in inventory
+  };
+  if (fish.taken === false) fish.draw();
+
+  if ((carrot.position.x >= -958 && carrot.position.x <= -904) && (carrot.position.y >= -480 && carrot.position.y <= -417) ) {
+    carrot.taken = true;
+    // make carrot appear in inventory
+  };
+  if (carrot.taken === false) carrot.draw();
+
+  if ((pinecone.position.x >= 383 && pinecone.position.x <= 434) && (pinecone.position.y >= -285 && pinecone.position.y <= -228) ) {
+    pinecone.taken = true;
+    // make pinecone appear in inventory
+  };
+  if (pinecone.taken === false) pinecone.draw();
+
+  if ((pumpkin.position.x >= -316 && pumpkin.position.x <= -286) && (pumpkin.position.y >= -2181 && pumpkin.position.y <= -2178) ) {
+    pinecone.taken = true;
+    // make pumpkin appear in inventory
+  };
+  if (pumpkin.taken === false) pumpkin.draw();
+
   player.draw();
   foreground.draw();
 
@@ -287,4 +307,3 @@ window.addEventListener('keyup', (e) => {
       break;
   }
 })
-
