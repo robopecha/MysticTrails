@@ -45,6 +45,18 @@ playerLeftImage.src = './images/player_left.png';
 const playerRightImage = new Image();
 playerRightImage.src = './images/player_right.png';
 
+const fishImage = new Image();
+fishImage.src = './images/fish.png';
+
+const carrotImage = new Image();
+carrotImage.src = './images/carrot.png';
+
+const pineconeImage = new Image();
+pineconeImage.src = './images/pinecone.png';
+
+const pumpkinImage = new Image();
+pumpkinImage.src = './images/pumpkin.png';
+
 const player = new Sprite({
   position: {
     x: canvas.width / 2 - 224 / 4 / 2,
@@ -78,6 +90,38 @@ const foreground = new Sprite({
   image: foregroundImage
 });
 
+const fish = new Sprite({
+  position: {
+    x: offset.x,
+    y: offset.y
+  },
+  image: fishImage
+});
+
+const carrot = new Sprite({
+  position: {
+    x: offset.x,
+    y: offset.y
+  },
+  image: carrotImage
+});
+
+const pinecone = new Sprite({
+  position: {
+    x: offset.x,
+    y: offset.y
+  },
+  image: pineconeImage
+});
+
+const pumpkin = new Sprite({
+  position: {
+    x: offset.x,
+    y: offset.y
+  },
+  image: pumpkinImage
+});
+
 const keys = {
   w: {
     pressed: false
@@ -93,7 +137,7 @@ const keys = {
   }
 }
 
-const movables = [background, ...boundaries, foreground]
+const movables = [background, ...boundaries, foreground, fish, carrot, pinecone, pumpkin];
 
 function rectangularCollision({rectangle1, rectangle2}) {
   return(rectangle1.position.x + rectangle1.width >= rectangle2.position.x &&
@@ -108,6 +152,10 @@ function animate() {
   boundaries.forEach(boundary => {
     boundary.draw();
   })
+  fish.draw();
+  carrot.draw();
+  pinecone.draw();
+  pumpkin.draw();
   player.draw();
   foreground.draw();
 
@@ -239,3 +287,4 @@ window.addEventListener('keyup', (e) => {
       break;
   }
 })
+
