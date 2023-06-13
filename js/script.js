@@ -57,6 +57,9 @@ pineconeImage.src = './images/pinecone.png';
 const pumpkinImage = new Image();
 pumpkinImage.src = './images/pumpkin.png';
 
+const senseiImage = new Image();
+senseiImage.src = './images/sensei.png';
+
 const player = new Sprite({
   position: {
     x: canvas.width / 2 - 224 / 4 / 2,
@@ -122,6 +125,14 @@ const pumpkin = new Sprite({
   image: pumpkinImage
 });
 
+const sensei = new Sprite({
+  position: {
+    x: offset.x,
+    y: offset.y
+  },
+  image: senseiImage
+});
+
 const keys = {
   w: {
     pressed: false
@@ -137,7 +148,7 @@ const keys = {
   }
 }
 
-const movables = [background, ...boundaries, foreground, fish, carrot, pinecone, pumpkin];
+const movables = [background, ...boundaries, foreground, fish, carrot, pinecone, pumpkin, sensei];
 
 function rectangularCollision({rectangle1, rectangle2}) {
   return(rectangle1.position.x + rectangle1.width >= rectangle2.position.x &&
@@ -176,6 +187,7 @@ function animate() {
   };
   if (pumpkin.taken === false) pumpkin.draw();
 
+  sensei.draw();
   player.draw();
   foreground.draw();
 
@@ -307,3 +319,9 @@ window.addEventListener('keyup', (e) => {
       break;
   }
 })
+
+if ((sensei.position.x >= -694 && sensei.position.x <= -670) &&
+ (sensei.position.y >= -894 && sensei.position.y <= -897) &&
+  lastKey === 'w') {
+  alert('wassup?!');
+}
