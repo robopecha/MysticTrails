@@ -61,8 +61,12 @@ pumpkinImage.src = './images/pumpkin.png';
 const appleImage = new Image();
 appleImage.src = './images/apple.png';
 
+const keyImage = new Image();
+keyImage.src = './images/key.png';
+
 const senseiImage = new Image();
 senseiImage.src = './images/sensei.png';
+
 
 const player = new Sprite({
   position: {
@@ -137,6 +141,14 @@ const apple = new Sprite({
   image: appleImage
 });
 
+const key = new Sprite({
+  position: {
+    x: offset.x,
+    y: offset.y
+  },
+  image: keyImage
+});
+
 const sensei = new Sprite({
   position: {
     x: offset.x,
@@ -144,6 +156,7 @@ const sensei = new Sprite({
   },
   image: senseiImage
 });
+
 
 const keys = {
   up: {
@@ -199,7 +212,17 @@ window.addEventListener('keyup', (e) => {
   }
 })
 
-const movables = [background, ...boundaries, foreground, fish, carrot, pinecone, pumpkin, apple, sensei];
+function collectionCompleted() {
+  return (
+    fish.taken &&
+    apple.taken &&
+    pumpkin.taken &&
+    pinecone.taken &&
+    carrot.taken
+  );
+}
+
+const movables = [background, ...boundaries, foreground, fish, carrot, pinecone, pumpkin, apple, key, sensei];
 
 function rectangularCollision({ rectangle1, rectangle2 }) {
   return (rectangle1.position.x + rectangle1.width >= rectangle2.position.x &&
@@ -242,10 +265,10 @@ function animate() {
     apple.taken = true;
     // make apple appear in inventory
   };
-  if (apple.taken === false)
-    apple.draw();
+  if (apple.taken === false) apple.draw();
 
   sensei.draw();
+  if (collectionCompleted()) key.draw();
   player.draw();
   foreground.draw();
 
