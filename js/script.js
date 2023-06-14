@@ -159,6 +159,45 @@ const keys = {
   }
 }
 
+let lastKey = '';
+window.addEventListener('keydown', (e) => {
+  switch (e.key) {
+    case 'w':
+      keys.w.pressed = true;
+      lastKey = 'w';
+      break;
+    case 'a':
+      keys.a.pressed = true;
+      lastKey = 'a';
+      break;
+    case 's':
+      keys.s.pressed = true;
+      lastKey = 's';
+      break;
+    case 'd':
+      keys.d.pressed = true;
+      lastKey = 'd';
+      break;
+  }
+})
+
+window.addEventListener('keyup', (e) => {
+  switch (e.key) {
+    case 'w':
+      keys.w.pressed = false;
+      break;
+    case 'a':
+      keys.a.pressed = false;
+      break;
+    case 's':
+      keys.s.pressed = false;
+      break;
+    case 'd':
+      keys.d.pressed = false;
+      break;
+  }
+})
+
 const movables = [background, ...boundaries, foreground, fish, carrot, pinecone, pumpkin, apple, sensei];
 
 function rectangularCollision({rectangle1, rectangle2}) {
@@ -231,7 +270,7 @@ function animate() {
 
     if (moving)
       movables.forEach(movable => movable.position.y += 3);
-    }
+  }
   else if (keys.a.pressed && lastKey === 'a') {
     player.moving = true;
     player.image = player.sprites.left;
@@ -252,7 +291,7 @@ function animate() {
 
     if (moving)
       movables.forEach(movable => movable.position.x += 3);
-    }
+  }
   else if (keys.s.pressed && lastKey === 's') {
     player.moving = true;
     player.image = player.sprites.down;
@@ -273,7 +312,7 @@ function animate() {
 
     if (moving)
       movables.forEach(movable => movable.position.y -= 3);
-    }
+  }
   else if (keys.d.pressed && lastKey === 'd') {
     player.moving = true;
     player.image = player.sprites.right;
@@ -294,52 +333,39 @@ function animate() {
 
     if (moving)
       movables.forEach(movable => movable.position.x -= 3);
-    }
+  }
 
   // if ((sensei.position.x >= -694 && sensei.position.x <= -670) &&
   // (sensei.position.y >= -894 && sensei.position.y <= -897) &&
   // lastKey === 'w') {
-  //   console.log('wassup?!');
+  //   alert('wassup?!');
   // }
 }
 
 animate();
 
-let lastKey = '';
-window.addEventListener('keydown', (e) => {
-  switch (e.key) {
-    case 'w':
-      keys.w.pressed = true;
-      lastKey = 'w';
-      break;
-    case 'a':
-      keys.a.pressed = true;
-      lastKey = 'a';
-      break;
-    case 's':
-      keys.s.pressed = true;
-      lastKey = 's';
-      break;
-    case 'd':
-      keys.d.pressed = true;
-      lastKey = 'd';
-      break;
-  }
-})
+const dialogue = document.createElement("div");
+dialogue.textContent = "This is a pop-up dialogue";
+dialogue.style.display = "none";
+dialogue.style.position = "absolute";
+dialogue.style.top = "50%";
+dialogue.style.left = "50%";
+dialogue.style.transform = "translate(-50%, -50%)";
+dialogue.style.backgroundColor = "white";
+dialogue.style.padding = "10px";
+dialogue.style.border = "1px solid black";
 
-window.addEventListener('keyup', (e) => {
-  switch (e.key) {
-    case 'w':
-      keys.w.pressed = false;
-      break;
-    case 'a':
-      keys.a.pressed = false;
-      break;
-    case 's':
-      keys.s.pressed = false;
-      break;
-    case 'd':
-      keys.d.pressed = false;
-      break;
+document.body.appendChild(dialogue);
+
+let visible = false;
+window.addEventListener('keydown', (e) => {
+  if (e.code === 'Space') {
+    if (visible === false) {
+      dialogue.style.display = "block";
+      visible = true;
+    } else {
+      dialogue.style.display = "none";
+      visible = false;
+    }
   }
 })
