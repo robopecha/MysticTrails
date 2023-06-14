@@ -6,7 +6,7 @@ canvas.height = 576;
 
 const collisionsMap = [];
 for (let i = 0; i < collisions.length; i += 70) {
-  collisionsMap.push(collisions.slice(i, i+70));
+  collisionsMap.push(collisions.slice(i, i + 70));
 }
 
 const boundaries = [];
@@ -18,11 +18,12 @@ const offset = {
 collisionsMap.forEach((row, i) => {
   row.forEach((symbol, j) => {
     if (symbol === 951) {
-     boundaries.push(new Boundary({
-      position: {
-        x: j * Boundary.width + offset.x,
-        y: i * Boundary.height + offset.y
-     }}));
+      boundaries.push(new Boundary({
+        position: {
+          x: j * Boundary.width + offset.x,
+          y: i * Boundary.height + offset.y
+        }
+      }));
     }
   })
 })
@@ -200,8 +201,8 @@ window.addEventListener('keyup', (e) => {
 
 const movables = [background, ...boundaries, foreground, fish, carrot, pinecone, pumpkin, apple, sensei];
 
-function rectangularCollision({rectangle1, rectangle2}) {
-  return(rectangle1.position.x + rectangle1.width >= rectangle2.position.x &&
+function rectangularCollision({ rectangle1, rectangle2 }) {
+  return (rectangle1.position.x + rectangle1.width >= rectangle2.position.x &&
     rectangle1.position.x <= rectangle2.position.x + rectangle2.width &&
     rectangle1.position.y <= rectangle2.position.y + rectangle2.height &&
     rectangle1.position.y + rectangle1.height >= rectangle2.position.y);
@@ -242,7 +243,7 @@ function animate() {
     // make apple appear in inventory
   };
   if (apple.taken === false)
-  apple.draw();
+    apple.draw();
 
   sensei.draw();
   player.draw();
@@ -250,18 +251,21 @@ function animate() {
 
   let moving = true;
   player.moving = false;
-  if (keys.up.pressed && lastKey === 'up') {
+
+  if (keys.up.pressed && lastKey === 'up' && visible === false) {
     player.moving = true;
     player.image = player.sprites.up;
     for (let i = 0; i < boundaries.length; i++) {
       const boundary = boundaries[i];
       if (rectangularCollision({
         rectangle1: player,
-        rectangle2: {...boundary,
+        rectangle2: {
+          ...boundary,
           position: {
             x: boundary.position.x,
             y: boundary.position.y + 3
-        }}
+          }
+        }
       })) {
         moving = false;
         break;
@@ -271,18 +275,21 @@ function animate() {
     if (moving)
       movables.forEach(movable => movable.position.y += 3);
   }
-  else if (keys.left.pressed && lastKey === 'left') {
+
+  else if (keys.left.pressed && lastKey === 'left' && visible === false) {
     player.moving = true;
     player.image = player.sprites.left;
     for (let i = 0; i < boundaries.length; i++) {
       const boundary = boundaries[i];
       if (rectangularCollision({
         rectangle1: player,
-        rectangle2: {...boundary,
+        rectangle2: {
+          ...boundary,
           position: {
             x: boundary.position.x + 3,
             y: boundary.position.y
-        }}
+          }
+        }
       })) {
         moving = false;
         break;
@@ -292,18 +299,21 @@ function animate() {
     if (moving)
       movables.forEach(movable => movable.position.x += 3);
   }
-  else if (keys.down.pressed && lastKey === 'down') {
+
+  else if (keys.down.pressed && lastKey === 'down' && visible === false) {
     player.moving = true;
     player.image = player.sprites.down;
     for (let i = 0; i < boundaries.length; i++) {
       const boundary = boundaries[i];
       if (rectangularCollision({
         rectangle1: player,
-        rectangle2: {...boundary,
+        rectangle2: {
+          ...boundary,
           position: {
             x: boundary.position.x,
             y: boundary.position.y - 3
-        }}
+          }
+        }
       })) {
         moving = false;
         break;
@@ -313,18 +323,21 @@ function animate() {
     if (moving)
       movables.forEach(movable => movable.position.y -= 3);
   }
-  else if (keys.right.pressed && lastKey === 'right') {
+
+  else if (keys.right.pressed && lastKey === 'right' && visible === false) {
     player.moving = true;
     player.image = player.sprites.right;
     for (let i = 0; i < boundaries.length; i++) {
       const boundary = boundaries[i];
       if (rectangularCollision({
         rectangle1: player,
-        rectangle2: {...boundary,
+        rectangle2: {
+          ...boundary,
           position: {
             x: boundary.position.x - 3,
             y: boundary.position.y
-        }}
+          }
+        }
       })) {
         moving = false;
         break;
@@ -334,15 +347,13 @@ function animate() {
     if (moving)
       movables.forEach(movable => movable.position.x -= 3);
   }
-
-  // (sensei.position.x >= -694 && sensei.position.x <= -670) &&
-  // (sensei.position.y >= -894 && sensei.position.y <= -897)
-
 }
 
 animate();
 
-
+// counter = 0;
+// [1,2,3,4]
+// arr[counter]
 const dialogue = document.createElement("div");
 dialogue.textContent = "This is a pop-up dialogue";
 dialogue.style.display = "none";
@@ -359,12 +370,16 @@ document.body.appendChild(dialogue);
 let visible = false;
 window.addEventListener('keydown', (e) => {
   if (e.code === 'Space') {
-    if (visible === false) {
-      dialogue.style.display = "block";
-      visible = true;
-    } else {
-      dialogue.style.display = "none";
-      visible = false;
+    if((sensei.position.x >= -694 && sensei.position.x <= -670) &&
+    (sensei.position.y >= -897 && sensei.position.y <= -894)) {
+      if (visible === false) {
+        dialogue.style.display = "block";
+        visible = true;
+      } else {
+        dialogue.style.display = "none";
+        visible = false;
+      }
     }
+
   }
 })
