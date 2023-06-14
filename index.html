@@ -2,13 +2,32 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>The Game</title>
+    <title>FISH STEW</title>
+
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <canvas></canvas>
+    <div>
+      <div id="overlay">
+        <h1>FISH STEW</h1>
+        <button>START</button>
+      </div>
+      <canvas></canvas>
+      <div id="ending">
+        <p>to be continued...</p>
+      </div>
+      <div id="inventory">
+        <div id="key"></div>
+        <div id="empty"></div>
+        <div id="apple"></div>
+        <div id="pumpkin"></div>
+        <div id="pinecone"></div>
+        <div id="carrot"></div>
+        <div id="fish"></div>
+      </div>
+    </div>
     <script src="./data/collisions.js"></script>
-    <script src="./js/classes.js"></script> 
+    <script src="./js/classes.js"></script>
     <script src="./js/script.js"></script>
   </body>
 </html>
