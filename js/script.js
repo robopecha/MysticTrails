@@ -145,55 +145,55 @@ const sensei = new Sprite({
 });
 
 const keys = {
-  w: {
+  up: {
     pressed: false
   },
-  a: {
+  left: {
     pressed: false
   },
-  s: {
+  down: {
     pressed: false
   },
-  d: {
+  right: {
     pressed: false
   }
 }
 
 let lastKey = '';
 window.addEventListener('keydown', (e) => {
-  switch (e.key) {
-    case 'w':
-      keys.w.pressed = true;
-      lastKey = 'w';
+  switch (e.code) {
+    case 'ArrowUp':
+      keys.up.pressed = true;
+      lastKey = 'up';
       break;
-    case 'a':
-      keys.a.pressed = true;
-      lastKey = 'a';
+    case 'ArrowLeft':
+      keys.left.pressed = true;
+      lastKey = 'left';
       break;
-    case 's':
-      keys.s.pressed = true;
-      lastKey = 's';
+    case 'ArrowDown':
+      keys.down.pressed = true;
+      lastKey = 'down';
       break;
-    case 'd':
-      keys.d.pressed = true;
-      lastKey = 'd';
+    case 'ArrowRight':
+      keys.right.pressed = true;
+      lastKey = 'right';
       break;
   }
 })
 
 window.addEventListener('keyup', (e) => {
-  switch (e.key) {
-    case 'w':
-      keys.w.pressed = false;
+  switch (e.code) {
+    case 'ArrowUp':
+      keys.up.pressed = false;
       break;
-    case 'a':
-      keys.a.pressed = false;
+    case 'ArrowLeft':
+      keys.left.pressed = false;
       break;
-    case 's':
-      keys.s.pressed = false;
+    case 'ArrowDown':
+      keys.down.pressed = false;
       break;
-    case 'd':
-      keys.d.pressed = false;
+    case 'ArrowRight':
+      keys.right.pressed = false;
       break;
   }
 })
@@ -250,7 +250,7 @@ function animate() {
 
   let moving = true;
   player.moving = false;
-  if (keys.w.pressed && lastKey === 'w') {
+  if (keys.up.pressed && lastKey === 'up') {
     player.moving = true;
     player.image = player.sprites.up;
     for (let i = 0; i < boundaries.length; i++) {
@@ -271,7 +271,7 @@ function animate() {
     if (moving)
       movables.forEach(movable => movable.position.y += 3);
   }
-  else if (keys.a.pressed && lastKey === 'a') {
+  else if (keys.left.pressed && lastKey === 'left') {
     player.moving = true;
     player.image = player.sprites.left;
     for (let i = 0; i < boundaries.length; i++) {
@@ -292,7 +292,7 @@ function animate() {
     if (moving)
       movables.forEach(movable => movable.position.x += 3);
   }
-  else if (keys.s.pressed && lastKey === 's') {
+  else if (keys.down.pressed && lastKey === 'down') {
     player.moving = true;
     player.image = player.sprites.down;
     for (let i = 0; i < boundaries.length; i++) {
@@ -313,7 +313,7 @@ function animate() {
     if (moving)
       movables.forEach(movable => movable.position.y -= 3);
   }
-  else if (keys.d.pressed && lastKey === 'd') {
+  else if (keys.right.pressed && lastKey === 'right') {
     player.moving = true;
     player.image = player.sprites.right;
     for (let i = 0; i < boundaries.length; i++) {
@@ -335,14 +335,13 @@ function animate() {
       movables.forEach(movable => movable.position.x -= 3);
   }
 
-  // if ((sensei.position.x >= -694 && sensei.position.x <= -670) &&
-  // (sensei.position.y >= -894 && sensei.position.y <= -897) &&
-  // lastKey === 'w') {
-  //   alert('wassup?!');
-  // }
+  // (sensei.position.x >= -694 && sensei.position.x <= -670) &&
+  // (sensei.position.y >= -894 && sensei.position.y <= -897)
+
 }
 
 animate();
+
 
 const dialogue = document.createElement("div");
 dialogue.textContent = "This is a pop-up dialogue";
