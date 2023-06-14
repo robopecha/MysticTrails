@@ -57,6 +57,9 @@ pineconeImage.src = './images/pinecone.png';
 const pumpkinImage = new Image();
 pumpkinImage.src = './images/pumpkin.png';
 
+const appleImage = new Image();
+appleImage.src = './images/apple.png';
+
 const senseiImage = new Image();
 senseiImage.src = './images/sensei.png';
 
@@ -125,6 +128,14 @@ const pumpkin = new Sprite({
   image: pumpkinImage
 });
 
+const apple = new Sprite({
+  position: {
+    x: offset.x,
+    y: offset.y
+  },
+  image: appleImage
+});
+
 const sensei = new Sprite({
   position: {
     x: offset.x,
@@ -148,7 +159,7 @@ const keys = {
   }
 }
 
-const movables = [background, ...boundaries, foreground, fish, carrot, pinecone, pumpkin, sensei];
+const movables = [background, ...boundaries, foreground, fish, carrot, pinecone, pumpkin, apple, sensei];
 
 function rectangularCollision({rectangle1, rectangle2}) {
   return(rectangle1.position.x + rectangle1.width >= rectangle2.position.x &&
@@ -186,6 +197,13 @@ function animate() {
     // make pumpkin appear in inventory
   };
   if (pumpkin.taken === false) pumpkin.draw();
+
+  if ((apple.position.x >= -3754 && apple.position.x <= -3718) && (apple.position.y >= -1542 && apple.position.y <= -1512)) {
+    apple.taken = true;
+    // make apple appear in inventory
+  };
+  if (apple.taken === false)
+  apple.draw();
 
   sensei.draw();
   player.draw();
@@ -277,6 +295,12 @@ function animate() {
     if (moving)
       movables.forEach(movable => movable.position.x -= 3);
     }
+
+  // if ((sensei.position.x >= -694 && sensei.position.x <= -670) &&
+  // (sensei.position.y >= -894 && sensei.position.y <= -897) &&
+  // lastKey === 'w') {
+  //   console.log('wassup?!');
+  // }
 }
 
 animate();
@@ -319,9 +343,3 @@ window.addEventListener('keyup', (e) => {
       break;
   }
 })
-
-if ((sensei.position.x >= -694 && sensei.position.x <= -670) &&
- (sensei.position.y >= -894 && sensei.position.y <= -897) &&
-  lastKey === 'w') {
-  alert('wassup?!');
-}
