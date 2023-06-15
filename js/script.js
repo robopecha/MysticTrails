@@ -6,15 +6,14 @@ canvas.height = 576;
 
 const startScreen = document.querySelector('#overlay');
 const endScreen = document.querySelector('#ending');
-const credits = document.querySelector('#credits');
-endScreen.style.display = 'none';
-credits.style.display = 'none';
+endScreen.style.display = 'block';
 
 const backgroundMusic = document.getElementById('backgroundMusic');
 const itemCollectSound = document.getElementById('itemCollectSound');
 const textSound = document.getElementById('textSound');
 const successSound = document.getElementById('successSound');
 
+backgroundMusic.volume = 0.7;
 
 let ending = false;
 
@@ -418,10 +417,6 @@ function animate() {
       canvas.style.display = 'none';
       endScreen.style.display = 'block';
     }, 5000);
-    setTimeout(() => {
-      endScreen.style.display = 'none';
-      credits.style.display = 'block';
-    }, 15000);
   }
 
   player.draw();

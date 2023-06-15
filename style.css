@@ -59,7 +59,7 @@ p {
 
 #continued {
   align-self: flex-end;
-  margin-top: 250px;
+  margin-top: 50px;
   margin-left: 10px;
   padding: 20px;
 }
@@ -69,9 +69,9 @@ p {
   margin-bottom: -160px;
 }
 
-/* canvas {
+canvas {
   display: none;
-} */
+}
 
 button {
   background-color: rgb(254, 230, 191);
@@ -90,15 +90,15 @@ button {
   position: absolute;
   width: 1024px;
   height: 576px;
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-/* canvas {
+canvas {
   display: none;
-} */
+}
 
 #ending {
   width: 1024px;
@@ -106,29 +106,22 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
   background-color: rgb(241, 188, 102);
   color: rgb(113, 53, 69);
   border: 4px solid rgb(113, 53, 69);
   border-radius: 10px;
-
 }
 
-#credits {
-  width: 1024px;
-  height: 576px;
+#ending img {
+  margin-top: 40px;
+  margin-left: 380px;
   text-align: center;
-  background-color: rgb(241, 188, 102);
-  color: rgb(113, 53, 69);
-  border: 4px solid rgb(113, 53, 69);
-  border-radius: 10px;
-}
-
-#credits img {
-  margin-top: 180px;
 }
 
 #jacey {
-  margin-top: 170px;
+  margin-top: -30px;
+  margin-left: 750px;
   font-size: 15px;
 }
 
