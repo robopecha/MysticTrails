@@ -17,6 +17,24 @@ button.addEventListener('click', () => {
   startScreen.style.display = 'none';
 });
 
+const inventoryFish = document.querySelector('#fish');
+inventoryFish.style.display = 'none';
+
+const inventoryCarrot = document.querySelector('#carrot');
+inventoryCarrot.style.display = 'none';
+
+const inventoryPinecone = document.querySelector('#pinecone');
+inventoryPinecone.style.display = 'none';
+
+const inventoryPumpkin = document.querySelector('#pumpkin');
+inventoryPumpkin.style.display = 'none';
+
+const inventoryApple = document.querySelector('#apple');
+inventoryApple.style.display = 'none';
+
+const inventoryKey = document.querySelector('#key');
+inventoryKey.style.display = 'none';
+
 const collisionsMap = [];
 for (let i = 0; i < collisions.length; i += 70) {
   collisionsMap.push(collisions.slice(i, i + 70));
@@ -317,49 +335,56 @@ function animate() {
 
   if ((fish.position.x >= -3178 && fish.position.x <= -3166) && (fish.position.y >= -2055 && fish.position.y <= -2010)) {
     if (missionStarted) {
-      fish.taken = true
-      // make fish appear in inventory
+      fish.taken = true;
+      inventoryFish.style.display = 'block';
     } else fish.draw();
   };
   if (fish.taken === false) fish.draw();
 
   if ((carrot.position.x >= -958 && carrot.position.x <= -904) && (carrot.position.y >= -480 && carrot.position.y <= -417)) {
     if (missionStarted) {
-      carrot.taken = true
-      // make carrot appear in inventory
+      carrot.taken = true;
+      inventoryCarrot.style.display = 'block';
     } else carrot.draw();
   };
   if (carrot.taken === false) carrot.draw();
 
   if ((pinecone.position.x >= 383 && pinecone.position.x <= 434) && (pinecone.position.y >= -285 && pinecone.position.y <= -228)) {
     if (missionStarted) {
-      pinecone.taken = true
-      // make pinecone appear in inventory
+      pinecone.taken = true;
+      inventoryPinecone.style.display = 'block';
     } else pinecone.draw();
   };
   if (pinecone.taken === false) pinecone.draw();
 
   if ((pumpkin.position.x >= -316 && pumpkin.position.x <= -286) && (pumpkin.position.y >= -2181 && pumpkin.position.y <= -2178)) {
     if (missionStarted) {
-      pumpkin.taken = true
-      // make pumpkin appear in inventory
+      pumpkin.taken = true;
+      inventoryPumpkin.style.display = 'block';
     } else pumpkin.draw();
   };
   if (pumpkin.taken === false) pumpkin.draw();
 
   if ((apple.position.x >= -3754 && apple.position.x <= -3718) && (apple.position.y >= -1542 && apple.position.y <= -1512)) {
     if (missionStarted) {
-      apple.taken = true
-      // make apple appear in inventory
+      apple.taken = true;
+      inventoryApple.style.display = 'block';
     } else apple.draw();
   };
   if (apple.taken === false) apple.draw();
 
   sensei.draw();
 
-  if (rewardTime) key.draw();
-  if ((key.position.x >= -748 && key.position.x <= -724) && (key.position.y >= -903 && key.position.y <= -897)) {
-    // make key appear in inventory
+  if (rewardTime) {
+    inventoryFish.style.display = 'none';
+    inventoryCarrot.style.display = 'none';
+    inventoryPinecone.style.display = 'none';
+    inventoryPumpkin.style.display = 'none';
+    inventoryApple.style.display = 'none';
+    key.draw();
+  }
+  if (rewardTime && (key.position.x >= -748 && key.position.x <= -724) && (key.position.y >= -903 && key.position.y <= -897)) {
+    inventoryKey.style.display = 'block';
     rewardTime = false;
     ending = true;
   };
@@ -367,10 +392,10 @@ function animate() {
   if (ending === true) {
     setTimeout(() => {
       endScreen.style.display = 'block';
-    }, 1000);
+    }, 5000);
     setTimeout(() => {
       credits.style.display = 'block';
-    }, 6000);
+    }, 15000);
   }
 
   player.draw();
