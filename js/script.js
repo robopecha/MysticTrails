@@ -275,7 +275,7 @@ window.addEventListener('keydown', (e) => {
           dialogue.textContent = speechBefore[indexCounter];
           dialogue.style.display = "block";
           indexCounter++;
-          if (indexCounter === speechBefore.length - 1) missionStarted = true;
+          if (indexCounter === speechBefore.length) missionStarted = true;
         } else {
           dialogue.style.display = "none";
           indexCounter = 0;
@@ -285,7 +285,7 @@ window.addEventListener('keydown', (e) => {
           dialogue.textContent = speechAfter[indexCounter];
           dialogue.style.display = "block";
           indexCounter++;
-          if (indexCounter === speechAfter.length - 1) rewardTime = true;
+          if (indexCounter === speechAfter.length) rewardTime = true;
         } else {
           dialogue.style.display = "none";
           indexCounter = 0;
@@ -308,9 +308,11 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
 function animate() {
   window.requestAnimationFrame(animate);
   background.draw();
+
   boundaries.forEach(boundary => {
     boundary.draw();
   })
+
   if ((fish.position.x >= -3178 && fish.position.x <= -3166) && (fish.position.y >= -2055 && fish.position.y <= -2010)) {
     if (missionStarted) {
       fish.taken = true
@@ -352,8 +354,15 @@ function animate() {
   if (apple.taken === false) apple.draw();
 
   sensei.draw();
+
   if (rewardTime) key.draw();
+  if ((key.position.x >= -748 && key.position.x <= -724) && (key.position.y >= -903 && key.position.y <= -897)) {
+    // make key appear in inventory
+    rewardTime = false;
+  };
+
   player.draw();
+
   foreground.draw();
 
   let moving = true;
