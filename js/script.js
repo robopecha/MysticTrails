@@ -280,13 +280,14 @@ const speechBefore = [
 
 const speechAfter = [
   'Thank you, dear adventurer!',
-  'Please take this key as a reward for your efforts. I think I found it somewhere around here...' // empty inventory, key appears!
+  'Please take this key as a reward for your efforts.',
+  'I think I found it somewhere around here...'
 ];
 
 const dialogue = document.createElement("div");
 dialogue.style.display = "none";
 dialogue.style.position = "absolute";
-dialogue.style.top = "70%";
+dialogue.style.top = "65%";
 dialogue.style.left = "50%";
 dialogue.style.transform = "translate(-50%, -50%)";
 dialogue.style.backgroundColor = "rgb(254, 230, 191)";
