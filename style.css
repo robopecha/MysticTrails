@@ -1,5 +1,11 @@
-.custom-font {
-  font-family: "Pixelfont", monospace;
+@font-face {
+  font-family: "pixel";
+  src: url("fonts/NineteenNinetySeven-11XB.ttf.woff") format("woff"),
+    url("fonts/NineteenNinetySeven-11XB.ttf.svg#A-Goblin-Appears") format("svg"),
+    url("fonts/NineteenNinetySeven-11XB.ttf.eot"),
+    url("fonts/NineteenNinetySeven-11XB.ttf.eot?#iefix") format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal;
 }
 
 body {
@@ -22,17 +28,36 @@ body {
 }
 
 h1 {
-  color: rgb(181, 137, 35);
+  color: rgb(113, 53, 69);
   font-size: 126px;
-  margin-top: -150px;
+  margin-top: -214px;
+  font-family: "pixel", monospace;
+}
+
+p {
+  color: rgb(113, 53, 69);
+  font-family: "pixel", monospace;
+  font-size: 30px;
+  padding: 0;
+  margin: 0;
+}
+
+#explanation {
+  margin-top: 127px;
+  margin-bottom: -160px;
 }
 
 button {
-  background-color: burlywood;
+  background-color: rgb(241, 188, 102);
   width: 300px;
   height: 90px;
-  border: 4px solid rgb(142, 102, 43);
-  margin-top: -60px;
+  border: 4px solid rgb(147, 74, 61);
+  border-radius: 10px;
+  color: rgb(113, 53, 69);
+  font-size: 40px;
+  font-family: "pixel", monospace;
+  margin-top: -30px;
+  margin-bottom: -30px;
 }
 
 #overlay {
