@@ -262,10 +262,13 @@ let rewardTime = false;
 const speechBefore = [
   'Ah, young adventurer!',
   'Would you lend an old man a hand?',
-  "I've been craving my favorite fish stew and I need you to gather a few ingredients for me.",
+  "I've been craving my favorite fish stew...",
+  "and I need you to gather a few ingredients for me.",
   "I need a fish, a carrot, a pumpkin, an apple...",
-  "...and then there's one final ingredient I've forgotten... I need that one, too...",
-  'Return to me, once you gathered all five ingredients, and your efforts will be rewarded!'
+  "and then there's one final ingredient...",
+  "I've forgotten... I need that one, too...",
+  'Return to me, once you gathered all five ingredients...',
+  'and your efforts will be rewarded!'
 ];
 
 const speechAfter = [
@@ -276,12 +279,16 @@ const speechAfter = [
 const dialogue = document.createElement("div");
 dialogue.style.display = "none";
 dialogue.style.position = "absolute";
-dialogue.style.top = "50%";
+dialogue.style.top = "70%";
 dialogue.style.left = "50%";
 dialogue.style.transform = "translate(-50%, -50%)";
-dialogue.style.backgroundColor = "white";
+dialogue.style.backgroundColor = "rgb(254, 230, 191)";
 dialogue.style.padding = "10px";
-dialogue.style.border = "1px solid black";
+dialogue.style.border = "4px solid rgb(113, 53, 69)";
+dialogue.style.borderRadius = '10px';
+dialogue.style.color = 'rgb(113, 53, 69)';
+dialogue.style.fontSize = '35px';
+dialogue.style.fontFamily = 'pixel';
 
 document.body.appendChild(dialogue);
 

@@ -26,7 +26,7 @@ body {
 }
 
 #title {
-  color: rgb(253, 218, 162);
+  color: rgb(254, 230, 191);
   font-size: 106px;
   text-shadow: 10px 10px rgb(113, 53, 69);
   margin-top: -214px;
@@ -37,7 +37,7 @@ body {
 h1 {
   color: rgb(113, 53, 69);
   font-size: 60px;
-  text-shadow: 6px 6px rgb(253, 218, 162);
+  text-shadow: 6px 6px rgb(254, 230, 191);
   font-family: "pixel", monospace;
   text-align: center;
 }
@@ -46,7 +46,7 @@ p {
   color: rgb(113, 53, 69);
   font-family: "pixel", monospace;
   font-size: 25px;
-  text-shadow: 3px 3px rgb(253, 218, 162);
+  text-shadow: 3px 3px rgb(254, 230, 191);
   padding: 0;
   margin: 0;
 }
@@ -65,7 +65,7 @@ p {
 }
 
 #explanation {
-  margin-top: 100px;
+  margin-top: 115px;
   margin-bottom: -160px;
 }
 
@@ -74,7 +74,7 @@ p {
 } */
 
 button {
-  background-color: rgb(253, 218, 162);
+  background-color: rgb(254, 230, 191);
   width: 300px;
   height: 90px;
   border: 4px solid rgb(113, 53, 69);
@@ -83,7 +83,7 @@ button {
   font-size: 40px;
   font-family: "pixel", monospace;
   margin-top: -10px;
-  margin-bottom: -20px;
+  margin-bottom: -30px;
 }
 
 #overlay {
