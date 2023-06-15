@@ -10,6 +10,8 @@ const credits = document.querySelector('#credits');
 endScreen.style.display = 'none';
 credits.style.display = 'none';
 
+let ending = false;
+
 const button = document.querySelector('button');
 button.addEventListener('click', () => {
   startScreen.style.display = 'none';
@@ -359,7 +361,17 @@ function animate() {
   if ((key.position.x >= -748 && key.position.x <= -724) && (key.position.y >= -903 && key.position.y <= -897)) {
     // make key appear in inventory
     rewardTime = false;
+    ending = true;
   };
+
+  if (ending === true) {
+    setTimeout(() => {
+      endScreen.style.display = 'block';
+    }, 1000);
+    setTimeout(() => {
+      credits.style.display = 'block';
+    }, 6000);
+  }
 
   player.draw();
 
