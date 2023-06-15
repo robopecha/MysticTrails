@@ -10,11 +10,14 @@ const credits = document.querySelector('#credits');
 endScreen.style.display = 'none';
 credits.style.display = 'none';
 
+const backgroundMusic = document.getElementById('backgroundMusic');
+
 let ending = false;
 
 const button = document.querySelector('button');
 button.addEventListener('click', () => {
   startScreen.style.display = 'none';
+  backgroundMusic.play();
 });
 
 const inventoryFish = document.querySelector('#fish');
@@ -398,6 +401,7 @@ function animate() {
 
   if (ending === true) {
     setTimeout(() => {
+      backgroundMusic.pause();
       canvas.style.display = 'none';
       endScreen.style.display = 'block';
     }, 5000);
