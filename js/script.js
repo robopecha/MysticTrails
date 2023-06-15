@@ -223,51 +223,6 @@ window.addEventListener('keyup', (e) => {
   }
 })
 
-
-const speechBefore = [
-  'Ah, young adventurer!',
-  'Would you lend an old man a hand?',
-  "I've been craving my favorite fish stew and I need you to gather a few ingredients for me.",
-  "I need a fish, a carrot, a pumpkin, an apple... and there's one final ingredient I've forgotten...",
-  'Return to me, once you gathered all five ingredients, and your efforts will be rewarded!'
-];
-
-const speechAfter = [
-  'Thank you, dear adventurer!',
-  'Please take this key as a reward for your efforts. I think I found it somewhere around here...' // empty inventory, key appears!
-];
-
-const dialogue = document.createElement("div");
-dialogue.textContent = "This is a pop-up dialogue";
-dialogue.style.display = "none";
-dialogue.style.position = "absolute";
-dialogue.style.top = "50%";
-dialogue.style.left = "50%";
-dialogue.style.transform = "translate(-50%, -50%)";
-dialogue.style.backgroundColor = "white";
-dialogue.style.padding = "10px";
-dialogue.style.border = "1px solid black";
-
-document.body.appendChild(dialogue);
-
-let missionStarted = false;
-
-let visible = false;
-window.addEventListener('keydown', (e) => {
-  if (e.code === 'Space') {
-    if((sensei.position.x >= -694 && sensei.position.x <= -670) &&
-    (sensei.position.y >= -897 && sensei.position.y <= -894)) {
-      if (visible === false) {
-        dialogue.style.display = "block";
-        visible = true;
-      } else {
-        dialogue.style.display = "none";
-        visible = false;
-      }
-    }
-  }
-})
-
 function collectionCompleted() {
   return (
     fish.taken &&
@@ -294,42 +249,32 @@ function animate() {
     boundary.draw();
   })
   if ((fish.position.x >= -3178 && fish.position.x <= -3166) && (fish.position.y >= -2055 && fish.position.y <= -2010)) {
-    if (missionStarted) {
-      fish.taken = true
-      // make fish appear in inventory
-    } else fish.draw();
+    fish.taken = true;
+    // make fish appear in inventory
   };
   if (fish.taken === false) fish.draw();
 
   if ((carrot.position.x >= -958 && carrot.position.x <= -904) && (carrot.position.y >= -480 && carrot.position.y <= -417)) {
-    if (missionStarted) {
-      carrot.taken = true
-      // make carrot appear in inventory
-    } else carrot.draw();
+    carrot.taken = true;
+    // make carrot appear in inventory
   };
   if (carrot.taken === false) carrot.draw();
 
   if ((pinecone.position.x >= 383 && pinecone.position.x <= 434) && (pinecone.position.y >= -285 && pinecone.position.y <= -228)) {
-    if (missionStarted) {
-      pinecone.taken = true
-      // make pinecone appear in inventory
-    } else pinecone.draw();
+    pinecone.taken = true;
+    // make pinecone appear in inventory
   };
   if (pinecone.taken === false) pinecone.draw();
 
   if ((pumpkin.position.x >= -316 && pumpkin.position.x <= -286) && (pumpkin.position.y >= -2181 && pumpkin.position.y <= -2178)) {
-    if (missionStarted) {
-      pumpkin.taken = true
-      // make pumpkin appear in inventory
-    } else pumpkin.draw();
+    pumpkin.taken = true;
+    // make pumpkin appear in inventory
   };
   if (pumpkin.taken === false) pumpkin.draw();
 
   if ((apple.position.x >= -3754 && apple.position.x <= -3718) && (apple.position.y >= -1542 && apple.position.y <= -1512)) {
-    if (missionStarted) {
-      apple.taken = true
-      // make apple appear in inventory
-    } else apple.draw();
+    apple.taken = true;
+    // make apple appear in inventory
   };
   if (apple.taken === false) apple.draw();
 
@@ -439,3 +384,55 @@ function animate() {
 }
 
 animate();
+
+
+const speechBefore = [
+  'Ah, young adventurer!',
+  'Would you lend an old man a hand?',
+  "I've been craving my favorite fish stew and I need you to gather a few ingredients for me.",
+  "I need a fish, a carrot, a pumpkin, an apple...",
+  "...and then there's one final ingredient I've forgotten... I need that one, too...",
+  'Return to me, once you gathered all five ingredients, and your efforts will be rewarded!'
+];
+
+const speechAfter = [
+  'Thank you, dear adventurer!',
+  'Please take this key as a reward for your efforts. I think I found it somewhere around here...' // empty inventory, key appears!
+];
+
+const dialogue = document.createElement("div");
+dialogue.textContent = "";
+dialogue.style.display = "none";
+dialogue.style.position = "absolute";
+dialogue.style.top = "50%";
+dialogue.style.left = "50%";
+dialogue.style.transform = "translate(-50%, -50%)";
+dialogue.style.backgroundColor = "white";
+dialogue.style.padding = "10px";
+dialogue.style.border = "1px solid black";
+
+document.body.appendChild(dialogue);
+
+let indexCounter = 0;
+
+let visible = false;
+window.addEventListener('keydown', (e) => {
+  if (e.code === 'Space') {
+    if((sensei.position.x >= -694 && sensei.position.x <= -670) &&
+    (sensei.position.y >= -897 && sensei.position.y <= -894)) {
+      if (visible === false) {
+        if (indexCounter < speechBefore.length) {
+          dialogue.textContent = speechBefore[indexCounter];
+          dialogue.style.display = "block";
+          visible = true;
+          indexCounter++;
+        } else {
+          dialogue.style.display = "none";
+        }
+      } else {
+        dialogue.style.display = "none";
+        visible = false;
+      }
+    }
+  }
+})
