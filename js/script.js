@@ -286,7 +286,7 @@ function animate() {
   let moving = true;
   player.moving = false;
 
-  if (keys.up.pressed && lastKey === 'up' && visible === false) {
+  if (keys.up.pressed && lastKey === 'up' && dialogue.style.display === "none") {
     player.moving = true;
     player.image = player.sprites.up;
     for (let i = 0; i < boundaries.length; i++) {
@@ -310,7 +310,7 @@ function animate() {
       movables.forEach(movable => movable.position.y += 3);
   }
 
-  else if (keys.left.pressed && lastKey === 'left' && visible === false) {
+  else if (keys.left.pressed && lastKey === 'left' && dialogue.style.display === "none") {
     player.moving = true;
     player.image = player.sprites.left;
     for (let i = 0; i < boundaries.length; i++) {
@@ -334,7 +334,7 @@ function animate() {
       movables.forEach(movable => movable.position.x += 3);
   }
 
-  else if (keys.down.pressed && lastKey === 'down' && visible === false) {
+  else if (keys.down.pressed && lastKey === 'down' && dialogue.style.display === "none") {
     player.moving = true;
     player.image = player.sprites.down;
     for (let i = 0; i < boundaries.length; i++) {
@@ -358,7 +358,7 @@ function animate() {
       movables.forEach(movable => movable.position.y -= 3);
   }
 
-  else if (keys.right.pressed && lastKey === 'right' && visible === false) {
+  else if (keys.right.pressed && lastKey === 'right' && dialogue.style.display === "none") {
     player.moving = true;
     player.image = player.sprites.right;
     for (let i = 0; i < boundaries.length; i++) {
@@ -401,7 +401,6 @@ const speechAfter = [
 ];
 
 const dialogue = document.createElement("div");
-dialogue.textContent = "";
 dialogue.style.display = "none";
 dialogue.style.position = "absolute";
 dialogue.style.top = "50%";
@@ -415,23 +414,17 @@ document.body.appendChild(dialogue);
 
 let indexCounter = 0;
 
-let visible = false;
 window.addEventListener('keydown', (e) => {
   if (e.code === 'Space') {
     if((sensei.position.x >= -694 && sensei.position.x <= -670) &&
     (sensei.position.y >= -897 && sensei.position.y <= -894)) {
-      if (visible === false) {
-        if (indexCounter < speechBefore.length) {
-          dialogue.textContent = speechBefore[indexCounter];
-          dialogue.style.display = "block";
-          visible = true;
-          indexCounter++;
-        } else {
-          dialogue.style.display = "none";
-        }
+      if (indexCounter < speechBefore.length) {
+        dialogue.textContent = speechBefore[indexCounter];
+        dialogue.style.display = "block";
+        indexCounter++;
       } else {
         dialogue.style.display = "none";
-        visible = false;
+        indexCounter = 0;
       }
     }
   }
