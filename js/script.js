@@ -11,6 +11,10 @@ endScreen.style.display = 'none';
 credits.style.display = 'none';
 
 const backgroundMusic = document.getElementById('backgroundMusic');
+const itemCollectSound = document.getElementById('itemCollectSound');
+const textSound = document.getElementById('textSound');
+const successSound = document.getElementById('successSound');
+
 
 let ending = false;
 
@@ -304,6 +308,7 @@ window.addEventListener('keydown', (e) => {
         if (indexCounter < speechBefore.length) {
           dialogue.textContent = speechBefore[indexCounter];
           dialogue.style.display = "block";
+          textSound.play();
           indexCounter++;
           if (indexCounter === speechBefore.length) missionStarted = true;
         } else {
@@ -314,6 +319,7 @@ window.addEventListener('keydown', (e) => {
         if (indexCounter < speechAfter.length) {
           dialogue.textContent = speechAfter[indexCounter];
           dialogue.style.display = "block";
+          textSound.play();
           indexCounter++;
           if (indexCounter === speechAfter.length) rewardTime = true;
         } else {
@@ -347,6 +353,7 @@ function animate() {
     if (missionStarted) {
       fish.taken = true;
       inventoryFish.style.display = 'block';
+      itemCollectSound.play();
     } else fish.draw();
   };
   if (fish.taken === false) fish.draw();
@@ -355,6 +362,7 @@ function animate() {
     if (missionStarted) {
       carrot.taken = true;
       inventoryCarrot.style.display = 'block';
+      itemCollectSound.play();
     } else carrot.draw();
   };
   if (carrot.taken === false) carrot.draw();
@@ -363,6 +371,7 @@ function animate() {
     if (missionStarted) {
       pinecone.taken = true;
       inventoryPinecone.style.display = 'block';
+      itemCollectSound.play();
     } else pinecone.draw();
   };
   if (pinecone.taken === false) pinecone.draw();
@@ -371,6 +380,7 @@ function animate() {
     if (missionStarted) {
       pumpkin.taken = true;
       inventoryPumpkin.style.display = 'block';
+      itemCollectSound.play();
     } else pumpkin.draw();
   };
   if (pumpkin.taken === false) pumpkin.draw();
@@ -379,6 +389,7 @@ function animate() {
     if (missionStarted) {
       apple.taken = true;
       inventoryApple.style.display = 'block';
+      itemCollectSound.play();
     } else apple.draw();
   };
   if (apple.taken === false) apple.draw();
@@ -395,6 +406,7 @@ function animate() {
   }
   if (rewardTime && (key.position.x >= -748 && key.position.x <= -724) && (key.position.y >= -903 && key.position.y <= -897)) {
     inventoryKey.style.display = 'block';
+    successSound.play();
     rewardTime = false;
     ending = true;
   };
