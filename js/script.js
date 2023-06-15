@@ -8,7 +8,7 @@ const startScreen = document.querySelector('#overlay');
 const endScreen = document.querySelector('#ending');
 const credits = document.querySelector('#credits');
 endScreen.style.display = 'none';
-credits.style.display = 'none';
+credits.style.display = 'block';
 
 let ending = false;
 
@@ -391,9 +391,11 @@ function animate() {
 
   if (ending === true) {
     setTimeout(() => {
+      canvas.style.display = 'none';
       endScreen.style.display = 'block';
     }, 5000);
     setTimeout(() => {
+      endScreen.style.display = 'none';
       credits.style.display = 'block';
     }, 15000);
   }

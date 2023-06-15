@@ -28,11 +28,18 @@ body {
   margin: 10px;
 }
 
-h1 {
+#title {
   color: rgb(113, 53, 69);
   font-size: 126px;
   margin-top: -214px;
   font-family: "pixel", monospace;
+}
+
+h1 {
+  color: rgb(113, 53, 69);
+  font-size: 100px;
+  font-family: "pixel", monospace;
+  text-align: center;
 }
 
 p {
@@ -41,6 +48,19 @@ p {
   font-size: 30px;
   padding: 0;
   margin: 0;
+}
+
+#mission {
+  text-align: center;
+  margin-top: -50px;
+  font-size: 38px;
+}
+
+#continued {
+  align-self: flex-end;
+  margin-top: 240px;
+  margin-left: 10px;
+  padding: 20px;
 }
 
 #explanation {
@@ -65,26 +85,46 @@ button {
   position: absolute;
   width: 1024px;
   height: 576px;
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
+canvas {
+  display: none;
+}
+
 #ending {
-  position: absolute;
   width: 1024px;
   height: 576px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: rgb(241, 188, 102);
+  color: rgb(113, 53, 69);
+  border: 4px solid rgb(147, 74, 61);
+  border-radius: 10px;
+
 }
 
 #credits {
-  position: absolute;
   width: 1024px;
   height: 576px;
-  display: flex;
-  justify-content: center;
+  text-align: center;
+  background-color: rgb(241, 188, 102);
+  color: rgb(113, 53, 69);
+  border: 4px solid rgb(147, 74, 61);
+  border-radius: 10px;
+}
+
+#credits img {
+  margin-top: 150px;
+}
+
+#jacey {
+  margin-top: 200px;
+  font-size: 15px;
 }
 
 #inventory {
@@ -92,6 +132,7 @@ button {
   flex-direction: row;
   justify-content: space-between;
   margin: 10px;
+  margin-right: 0;
 }
 
 #inventory div {
@@ -103,6 +144,6 @@ button {
   justify-content: center;
 }
 
-img {
+#inventory img {
   padding: 20px;
 }
