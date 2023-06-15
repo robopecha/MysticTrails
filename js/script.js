@@ -8,7 +8,7 @@ const startScreen = document.querySelector('#overlay');
 const endScreen = document.querySelector('#ending');
 const credits = document.querySelector('#credits');
 endScreen.style.display = 'none';
-credits.style.display = 'block';
+credits.style.display = 'none';
 
 let ending = false;
 

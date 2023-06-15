@@ -91,9 +91,9 @@ button {
   align-items: center;
 }
 
-canvas {
+/* canvas {
   display: none;
-}
+} */
 
 #ending {
   width: 1024px;
@@ -132,7 +132,6 @@ canvas {
   flex-direction: row;
   justify-content: space-between;
   margin: 10px;
-  margin-right: 0;
 }
 
 #inventory div {
