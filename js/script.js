@@ -223,8 +223,12 @@ window.addEventListener('keyup', (e) => {
   }
 })
 
+
+let missionStarted = false;
+
 function collectionCompleted() {
   return (
+    missionStarted &&
     fish.taken &&
     apple.taken &&
     pumpkin.taken &&
@@ -232,6 +236,7 @@ function collectionCompleted() {
     carrot.taken
   );
 }
+
 
 const movables = [background, ...boundaries, foreground, fish, carrot, pinecone, pumpkin, apple, key, sensei];
 
@@ -249,32 +254,42 @@ function animate() {
     boundary.draw();
   })
   if ((fish.position.x >= -3178 && fish.position.x <= -3166) && (fish.position.y >= -2055 && fish.position.y <= -2010)) {
-    fish.taken = true;
-    // make fish appear in inventory
+    if (missionStarted) {
+      fish.taken = true
+      // make fish appear in inventory
+    } else fish.draw();
   };
   if (fish.taken === false) fish.draw();
 
   if ((carrot.position.x >= -958 && carrot.position.x <= -904) && (carrot.position.y >= -480 && carrot.position.y <= -417)) {
-    carrot.taken = true;
-    // make carrot appear in inventory
+    if (missionStarted) {
+      carrot.taken = true
+      // make carrot appear in inventory
+    } else carrot.draw();
   };
   if (carrot.taken === false) carrot.draw();
 
   if ((pinecone.position.x >= 383 && pinecone.position.x <= 434) && (pinecone.position.y >= -285 && pinecone.position.y <= -228)) {
-    pinecone.taken = true;
-    // make pinecone appear in inventory
+    if (missionStarted) {
+      pinecone.taken = true
+      // make pinecone appear in inventory
+    } else pinecone.draw();
   };
   if (pinecone.taken === false) pinecone.draw();
 
   if ((pumpkin.position.x >= -316 && pumpkin.position.x <= -286) && (pumpkin.position.y >= -2181 && pumpkin.position.y <= -2178)) {
-    pumpkin.taken = true;
-    // make pumpkin appear in inventory
+    if (missionStarted) {
+      pumpkin.taken = true
+      // make pumpkin appear in inventory
+    } else pumpkin.draw();
   };
   if (pumpkin.taken === false) pumpkin.draw();
 
   if ((apple.position.x >= -3754 && apple.position.x <= -3718) && (apple.position.y >= -1542 && apple.position.y <= -1512)) {
-    apple.taken = true;
-    // make apple appear in inventory
+    if (missionStarted) {
+      apple.taken = true
+      // make apple appear in inventory
+    } else apple.draw();
   };
   if (apple.taken === false) apple.draw();
 
@@ -422,6 +437,7 @@ window.addEventListener('keydown', (e) => {
         dialogue.textContent = speechBefore[indexCounter];
         dialogue.style.display = "block";
         indexCounter++;
+        if (indexCounter === speechBefore.length - 1) missionStarted = true;
       } else {
         dialogue.style.display = "none";
         indexCounter = 0;
