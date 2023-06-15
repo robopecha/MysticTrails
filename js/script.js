@@ -237,6 +237,64 @@ function collectionCompleted() {
   );
 }
 
+let rewardTime = false;
+
+const speechBefore = [
+  'Ah, young adventurer!',
+  'Would you lend an old man a hand?',
+  "I've been craving my favorite fish stew and I need you to gather a few ingredients for me.",
+  "I need a fish, a carrot, a pumpkin, an apple...",
+  "...and then there's one final ingredient I've forgotten... I need that one, too...",
+  'Return to me, once you gathered all five ingredients, and your efforts will be rewarded!'
+];
+
+const speechAfter = [
+  'Thank you, dear adventurer!',
+  'Please take this key as a reward for your efforts. I think I found it somewhere around here...' // empty inventory, key appears!
+];
+
+const dialogue = document.createElement("div");
+dialogue.style.display = "none";
+dialogue.style.position = "absolute";
+dialogue.style.top = "50%";
+dialogue.style.left = "50%";
+dialogue.style.transform = "translate(-50%, -50%)";
+dialogue.style.backgroundColor = "white";
+dialogue.style.padding = "10px";
+dialogue.style.border = "1px solid black";
+
+document.body.appendChild(dialogue);
+
+let indexCounter = 0;
+window.addEventListener('keydown', (e) => {
+  if (e.code === 'Space') {
+    if((sensei.position.x >= -694 && sensei.position.x <= -670) &&
+    (sensei.position.y >= -897 && sensei.position.y <= -894)) {
+      if (collectionCompleted() === false) {
+        if (indexCounter < speechBefore.length) {
+          dialogue.textContent = speechBefore[indexCounter];
+          dialogue.style.display = "block";
+          indexCounter++;
+          if (indexCounter === speechBefore.length - 1) missionStarted = true;
+        } else {
+          dialogue.style.display = "none";
+          indexCounter = 0;
+        }
+      } else {
+        if (indexCounter < speechAfter.length) {
+          dialogue.textContent = speechAfter[indexCounter];
+          dialogue.style.display = "block";
+          indexCounter++;
+          if (indexCounter === speechAfter.length - 1) rewardTime = true;
+        } else {
+          dialogue.style.display = "none";
+          indexCounter = 0;
+        }
+      }
+    }
+  }
+})
+
 
 const movables = [background, ...boundaries, foreground, fish, carrot, pinecone, pumpkin, apple, key, sensei];
 
@@ -294,7 +352,7 @@ function animate() {
   if (apple.taken === false) apple.draw();
 
   sensei.draw();
-  if (collectionCompleted()) key.draw();
+  if (rewardTime) key.draw();
   player.draw();
   foreground.draw();
 
@@ -399,49 +457,3 @@ function animate() {
 }
 
 animate();
-
-
-const speechBefore = [
-  'Ah, young adventurer!',
-  'Would you lend an old man a hand?',
-  "I've been craving my favorite fish stew and I need you to gather a few ingredients for me.",
-  "I need a fish, a carrot, a pumpkin, an apple...",
-  "...and then there's one final ingredient I've forgotten... I need that one, too...",
-  'Return to me, once you gathered all five ingredients, and your efforts will be rewarded!'
-];
-
-const speechAfter = [
-  'Thank you, dear adventurer!',
-  'Please take this key as a reward for your efforts. I think I found it somewhere around here...' // empty inventory, key appears!
-];
-
-const dialogue = document.createElement("div");
-dialogue.style.display = "none";
-dialogue.style.position = "absolute";
-dialogue.style.top = "50%";
-dialogue.style.left = "50%";
-dialogue.style.transform = "translate(-50%, -50%)";
-dialogue.style.backgroundColor = "white";
-dialogue.style.padding = "10px";
-dialogue.style.border = "1px solid black";
-
-document.body.appendChild(dialogue);
-
-let indexCounter = 0;
-
-window.addEventListener('keydown', (e) => {
-  if (e.code === 'Space') {
-    if((sensei.position.x >= -694 && sensei.position.x <= -670) &&
-    (sensei.position.y >= -897 && sensei.position.y <= -894)) {
-      if (indexCounter < speechBefore.length) {
-        dialogue.textContent = speechBefore[indexCounter];
-        dialogue.style.display = "block";
-        indexCounter++;
-        if (indexCounter === speechBefore.length - 1) missionStarted = true;
-      } else {
-        dialogue.style.display = "none";
-        indexCounter = 0;
-      }
-    }
-  }
-})
