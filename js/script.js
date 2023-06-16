@@ -13,9 +13,6 @@ const itemCollectSound = document.getElementById('itemCollectSound');
 const textSound = document.getElementById('textSound');
 const successSound = document.getElementById('successSound');
 
-
-
-
 backgroundMusic.volume = 0.7;
 
 let ending = false;
