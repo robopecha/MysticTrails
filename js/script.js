@@ -6,12 +6,15 @@ canvas.height = 576;
 
 const startScreen = document.querySelector('#overlay');
 const endScreen = document.querySelector('#ending');
-endScreen.style.display = 'block';
+endScreen.style.display = 'none';
 
 const backgroundMusic = document.getElementById('backgroundMusic');
 const itemCollectSound = document.getElementById('itemCollectSound');
 const textSound = document.getElementById('textSound');
 const successSound = document.getElementById('successSound');
+
+
+
 
 backgroundMusic.volume = 0.7;
 
@@ -321,7 +324,7 @@ window.addEventListener('keydown', (e) => {
           dialogue.style.display = "block";
           textSound.play();
           indexCounter++;
-          if (indexCounter === speechAfter.length) rewardTime = true;
+          if (indexCounter === speechAfter.length - 1) rewardTime = true;
         } else {
           dialogue.style.display = "none";
           indexCounter = 0;
@@ -351,45 +354,45 @@ function animate() {
 
   if ((fish.position.x >= -3178 && fish.position.x <= -3166) && (fish.position.y >= -2055 && fish.position.y <= -2010)) {
     if (missionStarted) {
+      if (fish.taken === false) itemCollectSound.play();
       fish.taken = true;
       inventoryFish.style.display = 'block';
-      itemCollectSound.play();
     } else fish.draw();
   };
   if (fish.taken === false) fish.draw();
 
   if ((carrot.position.x >= -958 && carrot.position.x <= -904) && (carrot.position.y >= -480 && carrot.position.y <= -417)) {
     if (missionStarted) {
+      if (carrot.taken === false) itemCollectSound.play();
       carrot.taken = true;
       inventoryCarrot.style.display = 'block';
-      itemCollectSound.play();
     } else carrot.draw();
   };
   if (carrot.taken === false) carrot.draw();
 
   if ((pinecone.position.x >= 383 && pinecone.position.x <= 434) && (pinecone.position.y >= -285 && pinecone.position.y <= -228)) {
     if (missionStarted) {
+      if (pinecone.taken === false) itemCollectSound.play();
       pinecone.taken = true;
       inventoryPinecone.style.display = 'block';
-      itemCollectSound.play();
     } else pinecone.draw();
   };
   if (pinecone.taken === false) pinecone.draw();
 
   if ((pumpkin.position.x >= -316 && pumpkin.position.x <= -286) && (pumpkin.position.y >= -2181 && pumpkin.position.y <= -2178)) {
     if (missionStarted) {
+      if (pumpkin.taken === false) itemCollectSound.play();
       pumpkin.taken = true;
       inventoryPumpkin.style.display = 'block';
-      itemCollectSound.play();
     } else pumpkin.draw();
   };
   if (pumpkin.taken === false) pumpkin.draw();
 
   if ((apple.position.x >= -3754 && apple.position.x <= -3718) && (apple.position.y >= -1542 && apple.position.y <= -1512)) {
     if (missionStarted) {
+      if (apple.taken === false) itemCollectSound.play();
       apple.taken = true;
       inventoryApple.style.display = 'block';
-      itemCollectSound.play();
     } else apple.draw();
   };
   if (apple.taken === false) apple.draw();
@@ -416,7 +419,7 @@ function animate() {
       backgroundMusic.pause();
       canvas.style.display = 'none';
       endScreen.style.display = 'block';
-    }, 5000);
+    }, 2000);
   }
 
   player.draw();

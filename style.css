@@ -69,10 +69,6 @@ p {
   margin-bottom: -160px;
 }
 
-canvas {
-  display: none;
-}
-
 button {
   background-color: rgb(254, 230, 191);
   width: 300px;
@@ -90,14 +86,10 @@ button {
   position: absolute;
   width: 1024px;
   height: 576px;
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-canvas {
-  display: none;
 }
 
 #ending {
