@@ -15,7 +15,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 35px auto 0;
+  margin: 100px auto 0;
 }
 
 #screens {
