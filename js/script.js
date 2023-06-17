@@ -13,7 +13,14 @@ const itemCollectSound = document.getElementById('itemCollectSound');
 const textSound = document.getElementById('textSound');
 const successSound = document.getElementById('successSound');
 
-backgroundMusic.volume = 0.7;
+backgroundMusic.volume = 0.8;
+
+const soundOn = document.querySelector('#on');
+const soundOff = document.querySelector('#off');
+soundOn.style.display = 'none';
+soundOff.style.display = 'none';
+
+let isMusicPlaying = false;
 
 let ending = false;
 
@@ -21,7 +28,25 @@ const button = document.querySelector('button');
 button.addEventListener('click', () => {
   startScreen.style.display = 'none';
   backgroundMusic.play();
+  soundOn.style.display = 'block';
+  isMusicPlaying = true;
 });
+
+const sound = document.querySelector('#sound');
+sound.addEventListener('click', () => {
+  if (isMusicPlaying) {
+    backgroundMusic.pause();
+    soundOn.style.display = 'none';
+    soundOff.style.display = 'block';
+    isMusicPlaying = false;
+  } else {
+    backgroundMusic.play();
+    soundOn.style.display = 'block';
+    soundOff.style.display = 'none';
+    isMusicPlaying = true;
+  }
+})
+
 
 const inventoryFish = document.querySelector('#fish');
 inventoryFish.style.display = 'none';
@@ -66,7 +91,7 @@ collisionsMap.forEach((row, i) => {
 })
 
 const image = new Image();
-image.src = './images/the game.png';
+image.src = './images/map.png';
 
 const foregroundImage = new Image();
 foregroundImage.src = './images/foregroundObjects.png';
