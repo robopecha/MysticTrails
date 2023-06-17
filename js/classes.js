@@ -52,3 +52,4 @@ class Boundary {
     c.fillRect(this.position.x, this.position.y, this.width, this.height);
   }
 }
+
