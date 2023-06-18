@@ -368,19 +368,16 @@ window.addEventListener('keydown', (e) => {
 
 const signSquareText = 'Welcome to our town, enjoy your stay!';
 
-let visible = false;
 window.addEventListener('keydown', (e) => {
   if (e.code === 'Space') {
     if((signSquare.position.x >= -1375 && signSquare.position.x <= -1258) &&
     (signSquare.position.y >= -1026 && signSquare.position.y <= -903)) {
-      if (visible === false) {
+      if (dialogue.style.display === "none") {
         dialogue.textContent = signSquareText;
         dialogue.style.display = "block";
         textSound.play();
-        visible = true;
       } else {
         dialogue.style.display = "none";
-        visible = false;
       }
     }
   }
