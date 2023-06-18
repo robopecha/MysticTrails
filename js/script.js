@@ -366,7 +366,7 @@ window.addEventListener('keydown', (e) => {
   }
 })
 
-const signSquareText = 'Welcome to our town, enjoy your stay!';
+const signSquareText = 'Welcome to our town! Enjoy your stay!';
 
 window.addEventListener('keydown', (e) => {
   if (e.code === 'Space') {
