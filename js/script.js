@@ -129,6 +129,8 @@ keyImage.src = './images/key.png';
 const senseiImage = new Image();
 senseiImage.src = './images/sensei.png';
 
+const signSquareImage = new Image();
+signSquareImage.src = './images/sign_square.png';
 
 const player = new Sprite({
   position: {
@@ -217,6 +219,14 @@ const sensei = new Sprite({
     y: offset.y
   },
   image: senseiImage
+});
+
+const signSquare = new Sprite({
+  position: {
+    x: offset.x,
+    y: offset.y
+  },
+  image: signSquareImage
 });
 
 
@@ -356,8 +366,30 @@ window.addEventListener('keydown', (e) => {
   }
 })
 
+const signSquareText = 'Welcome to our town, enjoy your stay!';
 
-const movables = [background, ...boundaries, foreground, fish, carrot, pinecone, pumpkin, apple, key, sensei];
+let visible = false;
+window.addEventListener('keydown', (e) => {
+  if (e.code === 'Space') {
+    if((signSquare.position.x >= -1375 && signSquare.position.x <= -1258) &&
+    (signSquare.position.y >= -1026 && signSquare.position.y <= -903)) {
+      if (visible === false) {
+        dialogue.textContent = signSquareText;
+        dialogue.style.display = "block";
+        textSound.play();
+        visible = true;
+      } else {
+        dialogue.style.display = "none";
+        visible = false;
+      }
+    }
+  }
+})
+
+
+
+
+const movables = [background, ...boundaries, foreground, fish, carrot, pinecone, pumpkin, apple, key, sensei, signSquare];
 
 function rectangularCollision({ rectangle1, rectangle2 }) {
   return (rectangle1.position.x + rectangle1.width >= rectangle2.position.x &&
@@ -420,6 +452,7 @@ function animate() {
   if (apple.taken === false) apple.draw();
 
   sensei.draw();
+  signSquare.draw();
 
   if (rewardTime) {
     inventoryFish.style.display = 'none';
