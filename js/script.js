@@ -132,6 +132,22 @@ senseiImage.src = './images/sensei.png';
 const signSquareImage = new Image();
 signSquareImage.src = './images/sign_square.png';
 
+const signGraveyardImage = new Image();
+signGraveyardImage.src = './images/sign_graveyard.png';
+
+const signForestImage = new Image();
+signForestImage.src = './images/sign_forest.png';
+
+const signIslandImage = new Image();
+signIslandImage.src = './images/sign_island.png';
+
+const signMountainsImage = new Image();
+signMountainsImage.src = './images/sign_mountains.png';
+
+const signWaterfallImage = new Image();
+signWaterfallImage.src = './images/sign_waterfall.png';
+
+
 const player = new Sprite({
   position: {
     x: canvas.width / 2 - 224 / 4 / 2,
@@ -229,6 +245,46 @@ const signSquare = new Sprite({
   image: signSquareImage
 });
 
+const signGraveyard = new Sprite({
+  position: {
+    x: offset.x,
+    y: offset.y
+  },
+  image: signGraveyardImage
+});
+
+const signForest = new Sprite({
+  position: {
+    x: offset.x,
+    y: offset.y
+  },
+  image: signForestImage
+});
+
+const signIsland = new Sprite({
+  position: {
+    x: offset.x,
+    y: offset.y
+  },
+  image: signIslandImage
+});
+
+const signMountains = new Sprite({
+  position: {
+    x: offset.x,
+    y: offset.y
+  },
+  image: signMountainsImage
+});
+
+const signWaterfall = new Sprite({
+  position: {
+    x: offset.x,
+    y: offset.y
+  },
+  image: signWaterfallImage
+});
+
 
 const keys = {
   up: {
@@ -300,6 +356,24 @@ function collectionCompleted() {
 
 let rewardTime = false;
 
+
+const dialogue = document.createElement("div");
+dialogue.style.display = "none";
+dialogue.style.position = "absolute";
+dialogue.style.top = "65%";
+dialogue.style.left = "50%";
+dialogue.style.transform = "translate(-50%, -50%)";
+dialogue.style.backgroundColor = "rgb(254, 230, 191)";
+dialogue.style.padding = "10px";
+dialogue.style.border = "4px solid rgb(113, 53, 69)";
+dialogue.style.borderRadius = '10px';
+dialogue.style.color = 'rgb(113, 53, 69)';
+dialogue.style.fontSize = '35px';
+dialogue.style.fontFamily = 'pixel';
+
+document.body.appendChild(dialogue);
+
+
 const speechBefore = [
   'Ah, young adventurer!',
   'Would you lend an old man a hand?',
@@ -317,22 +391,6 @@ const speechAfter = [
   'Please take this key as a reward for your efforts.',
   'I think I found it somewhere around here...'
 ];
-
-const dialogue = document.createElement("div");
-dialogue.style.display = "none";
-dialogue.style.position = "absolute";
-dialogue.style.top = "65%";
-dialogue.style.left = "50%";
-dialogue.style.transform = "translate(-50%, -50%)";
-dialogue.style.backgroundColor = "rgb(254, 230, 191)";
-dialogue.style.padding = "10px";
-dialogue.style.border = "4px solid rgb(113, 53, 69)";
-dialogue.style.borderRadius = '10px';
-dialogue.style.color = 'rgb(113, 53, 69)';
-dialogue.style.fontSize = '35px';
-dialogue.style.fontFamily = 'pixel';
-
-document.body.appendChild(dialogue);
 
 let indexCounter = 0;
 window.addEventListener('keydown', (e) => {
@@ -366,27 +424,46 @@ window.addEventListener('keydown', (e) => {
   }
 })
 
-const signSquareText = 'Welcome to our town! Enjoy your stay!';
 
-window.addEventListener('keydown', (e) => {
-  if (e.code === 'Space') {
-    if((signSquare.position.x >= -1375 && signSquare.position.x <= -1258) &&
-    (signSquare.position.y >= -1026 && signSquare.position.y <= -903)) {
-      if (dialogue.style.display === "none") {
-        dialogue.textContent = signSquareText;
-        dialogue.style.display = "block";
-        textSound.play();
-      } else {
-        dialogue.style.display = "none";
+function readSign(sign, xBegin, xEnd, yBegin, yEnd, text) {
+  window.addEventListener('keydown', (e) => {
+    if (e.code === 'Space') {
+      if((sign.position.x >= xBegin && sign.position.x <= xEnd) &&
+      (sign.position.y >= yBegin && sign.position.y <= yEnd)) {
+        if (dialogue.style.display === "none") {
+          dialogue.textContent = text;
+          dialogue.style.display = "block";
+          textSound.play();
+        } else {
+          dialogue.style.display = "none";
+        }
       }
     }
-  }
-})
+  })
+}
+
+const signSquareText = 'Welcome to our town! Enjoy your stay!';
+readSign(signSquare, -1375, -1258, -1026, -903, signSquareText);
+
+const signGraveyardText = 'Beware of ghosts!';
+readSign(signGraveyard, -1465, -1384, -1743, -1671, signGraveyardText);
+
+const signForestText = 'Tip of the month: Use pinecones to spice up your fish stew!';
+readSign(signForest, -94, 23, -450, -360, signForestText);
+
+const signWaterfallText = 'I am looking for my cat in the endless caves of the mountains. - Vanilla';
+readSign(signWaterfall, -3817, -3754, -771, -645, signWaterfallText);
+
+// const signIslandText = 'This island used to be somewhere else before it came here.';
+// readSign(signIsland, , signIslandText);
+
+// const signMountainsText = 'Once there was a hidden city behind this forest.';
+// readSign(signMountains, , signMountainsText);
 
 
 
 
-const movables = [background, ...boundaries, foreground, fish, carrot, pinecone, pumpkin, apple, key, sensei, signSquare];
+const movables = [background, ...boundaries, foreground, fish, carrot, pinecone, pumpkin, apple, key, sensei, signSquare, signGraveyard, signForest, signWaterfall, signIsland, signMountains];
 
 function rectangularCollision({ rectangle1, rectangle2 }) {
   return (rectangle1.position.x + rectangle1.width >= rectangle2.position.x &&
