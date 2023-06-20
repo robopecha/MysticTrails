@@ -1,6 +1,6 @@
 # Mystic Trails
 
-A retro-style 16bit adventure game. The objective is to explore the map in a peaceful atmosphere and solve the missions that are currently available.  
+A retro-style 16bit adventure browser game. The objective is to explore the map in a peaceful atmosphere and solve the missions that are currently available.  
 
 ---
 
