@@ -2,8 +2,6 @@
 
 A retro-style 16bit adventure browser game. The objective is to explore the map in a peaceful atmosphere and solve the missions that are currently available.     
 
-This is my first game, I made it as a 4-day school project.
-
 ---
 
    
