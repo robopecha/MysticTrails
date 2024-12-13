@@ -1,6 +1,6 @@
 # Mystic Trails
 
-A retro-style 16bit adventure browser game. The objective is to explore the map in a peaceful atmosphere and solve the missions that are currently available.     
+A retro-style 16bit adventure browser game. The objective is to explore the map in a peaceful atmosphere and solve the mission that is currently available. I might add more!     
 
 ---
 
@@ -10,7 +10,7 @@ A retro-style 16bit adventure browser game. The objective is to explore the map 
    
 ---
 
-Play it here: https://robopecha.github.io/MysticTrails/   
+Play it here: https://mystictrails.netlify.app   
 
 ---   
     
@@ -25,7 +25,7 @@ Space bar
 Made with:  
 - HTML, Canvas  
 - CSS  
-- Javascript OOP
+- JavaScript OOP
      
 ---    
 
